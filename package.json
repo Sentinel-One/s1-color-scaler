@@ -3,11 +3,11 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
-    "test": "ng test",
-    "lint": "ng lint",
-    "e2e": "ng e2e"
+    "all:build": "npm run example:build && npm run lib:build",
+    "start": "ng serve --open",
+    "lib:build": "ng build s1-color-scaler",
+    "lib:lint": "ng lint s1-color-scaler --fix",
+    "lib:publish-2-npm": "./dist/s1-color-scaler npm publish"
   },
   "private": true,
   "dependencies": {
@@ -21,16 +21,21 @@
     "@angular/router": "~9.1.0",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
-    "zone.js": "~0.10.2"
+    "zone.js": "~0.10.2",
+    "quantize": "^1.0.2",
+    "chroma-js": "^2.1.0"
   },
   "devDependencies": {
+    "@angular-devkit/build-angular": "~0.901.9",
+    "@angular-devkit/build-ng-packagr": "~0.901.9",
     "@angular/cli": "~9.1.0",
     "@angular/compiler-cli": "~9.1.0",
     "@angular/language-service": "~9.1.0",
-    "@types/node": "^12.11.1",
     "@types/jasmine": "~3.5.0",
     "@types/jasminewd2": "~2.0.3",
+    "@types/node": "^12.11.1",
     "codelyzer": "^5.1.2",
+    "husky": "^4.2.5",
     "jasmine-core": "~3.5.0",
     "jasmine-spec-reporter": "~4.2.1",
     "karma": "~4.4.1",
@@ -38,9 +43,24 @@
     "karma-coverage-istanbul-reporter": "~2.1.0",
     "karma-jasmine": "~3.0.1",
     "karma-jasmine-html-reporter": "^1.4.2",
+    "lint-staged": "^10.2.11",
+    "ng-packagr": "^9.0.0",
+    "prettier": "2.0.5",
     "protractor": "~5.4.3",
     "ts-node": "~8.3.0",
     "tslint": "~6.1.0",
+    "tslint-config-prettier": "^1.18.0",
     "typescript": "~3.8.3"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "projects/**/*.ts": [
+      "prettier --write",
+      "git add"
+    ]
   }
 }
