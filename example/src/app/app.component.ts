@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { S1ColorScaler } from '../../../s1-color-scaler/src/lib/s1-color-scaler';
+import { S1ColorScaler } from '../../../projects/s1-color-scaler/src/lib/s1-color-scaler';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',

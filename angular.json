@@ -43,28 +43,28 @@
         }
       }
     },
-    "s1-color-scaler-example": {
+    "example": {
       "projectType": "application",
       "schematics": {},
-      "root": "projects/s1-color-scaler-example",
-      "sourceRoot": "projects/s1-color-scaler-example/src",
+      "root": "example",
+      "sourceRoot": "example/src",
       "prefix": "app",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "outputPath": "dist/s1-color-scaler-example",
-            "index": "projects/s1-color-scaler-example/src/index.html",
-            "main": "projects/s1-color-scaler-example/src/main.ts",
-            "polyfills": "projects/s1-color-scaler-example/src/polyfills.ts",
-            "tsConfig": "projects/s1-color-scaler-example/tsconfig.app.json",
+            "index": "example/src/index.html",
+            "main": "example/src/main.ts",
+            "polyfills": "example/src/polyfills.ts",
+            "tsConfig": "example/tsconfig.app.json",
             "aot": true,
             "assets": [
-              "projects/s1-color-scaler-example/src/favicon.ico",
-              "projects/s1-color-scaler-example/src/assets"
+              "example/src/favicon.ico",
+              "example/src/assets"
             ],
             "styles": [
-              "projects/s1-color-scaler-example/src/styles.css"
+              "example/src/styles.css"
             ],
             "scripts": []
           },
@@ -72,8 +72,8 @@
             "production": {
               "fileReplacements": [
                 {
-                  "replace": "projects/s1-color-scaler-example/src/environments/environment.ts",
-                  "with": "projects/s1-color-scaler-example/src/environments/environment.prod.ts"
+                  "replace": "example/src/environments/environment.ts",
+                  "with": "example/src/environments/environment.prod.ts"
                 }
               ],
               "optimization": true,
@@ -102,33 +102,33 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "s1-color-scaler-example:build"
+            "browserTarget": "example:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "s1-color-scaler-example:build:production"
+              "browserTarget": "example:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "s1-color-scaler-example:build"
+            "browserTarget": "example:build"
           }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "projects/s1-color-scaler-example/src/test.ts",
-            "polyfills": "projects/s1-color-scaler-example/src/polyfills.ts",
-            "tsConfig": "projects/s1-color-scaler-example/tsconfig.spec.json",
-            "karmaConfig": "projects/s1-color-scaler-example/karma.conf.js",
+            "main": "example/src/test.ts",
+            "polyfills": "example/src/polyfills.ts",
+            "tsConfig": "example/tsconfig.spec.json",
+            "karmaConfig": "example/karma.conf.js",
             "assets": [
-              "projects/s1-color-scaler-example/src/favicon.ico",
-              "projects/s1-color-scaler-example/src/assets"
+              "example/src/favicon.ico",
+              "example/src/assets"
             ],
             "styles": [
-              "projects/s1-color-scaler-example/src/styles.css"
+              "example/src/styles.css"
             ],
             "scripts": []
           }
@@ -137,9 +137,9 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "projects/s1-color-scaler-example/tsconfig.app.json",
-              "projects/s1-color-scaler-example/tsconfig.spec.json",
-              "projects/s1-color-scaler-example/e2e/tsconfig.json"
+              "example/tsconfig.app.json",
+              "example/tsconfig.spec.json",
+              "example/e2e/tsconfig.json"
             ],
             "exclude": [
               "**/node_modules/**"
@@ -149,12 +149,12 @@
         "e2e": {
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
-            "protractorConfig": "projects/s1-color-scaler-example/e2e/protractor.conf.js",
-            "devServerTarget": "s1-color-scaler-example:serve"
+            "protractorConfig": "example/e2e/protractor.conf.js",
+            "devServerTarget": "example:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "s1-color-scaler-example:serve:production"
+              "devServerTarget": "example:serve:production"
             }
           }
         }
