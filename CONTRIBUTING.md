@@ -1,4 +1,4 @@
-# Contributing to Awesome Lib
+# Contributing to S1ColorScaler
 
 First of all, thank you for considering contributing to Awesome lib!
 Please go over these guidelines to ensure that your contribution lands
