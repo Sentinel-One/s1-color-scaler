@@ -23,6 +23,17 @@ export function rgbToHex(r: number, g: number, b: number): string {
   return `#${red}${green}${blue}`;
 }
 
+export function getRgbFromImageData([imgData]): Promise<string[]> {
+  const rgb = [];
+  for (let i = 0; i < imgData.data.length; i += 4) {
+    const r = imgData.data[i];
+    const g = imgData.data[i + 1];
+    const b = imgData.data[i + 2];
+    rgb.push([r, g, b]);
+  }
+  return Promise.resolve(rgb);
+}
+
 export function getColorTheme(range: string[], count = 6, mode: Mode = 'light'): string[] {
   const color = mode === 'dark' ? '#000000' : '#ffffff';
   return chroma

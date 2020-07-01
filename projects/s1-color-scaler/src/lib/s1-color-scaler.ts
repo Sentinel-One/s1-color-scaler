@@ -1,5 +1,6 @@
-import { getColors, getColorTheme, loadImageBitmap, rgbToHex } from './utils';
+import { getColors, getColorTheme, getRgbFromImageData, loadImageBitmap, rgbToHex } from './utils';
 import { Observable, Subject } from 'rxjs';
+import { InlineWorkerHelper } from './inline-worker-helper';
 
 export type Mode = 'dark' | 'light';
 
@@ -49,25 +50,7 @@ export class S1ColorScaler {
           ctx.drawImage(imageBitmap, 0, 0, imageBitmap.width, imageBitmap.height);
           const imageData = ctx.getImageData(0, 0, offscreenCanvas.width, offscreenCanvas.height);
 
-          const process = () => {
-            self.onmessage = (evt) => {
-              const imgData = evt.data.image;
-              const rgb = [];
-              for (let i = 0; i < imgData.data.length; i += 4) {
-                const r = imgData.data[i];
-                const g = imgData.data[i + 1];
-                const b = imgData.data[i + 2];
-                rgb.push([r, g, b]);
-              }
-              self.postMessage(rgb, null);
-            };
-          };
-
-          const blob = new Blob([`( ${process.toString()} )()`], { type: 'application/javascript' });
-          const url = URL.createObjectURL(blob);
-
-          const worker = new Worker(url);
-          worker.postMessage({ image: imageData }, []);
+          const worker = InlineWorkerHelper.run(getRgbFromImageData, [imageData]);
           worker.onmessage = ({ data }) => {
             const colorScale = getColors(data, count);
             const hex = colorScale.reduce((acc: string[], [r, g, b]) => {
