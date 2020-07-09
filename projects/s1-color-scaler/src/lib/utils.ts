@@ -1,6 +1,5 @@
 import * as quantize from 'quantize';
 import * as chroma from 'chroma-js';
-import { Mode } from './s1-color-scaler';
 
 export function getColors(pixels: number[][], count: number = 4): number[][] {
   const colorMap = quantize(pixels, count);
@@ -20,7 +19,7 @@ export function getRgbFromImageData([imgData]): Promise<string[]> {
   return Promise.resolve(rgb);
 }
 
-export function getColorTheme(range: string[], count = 6, mode: Mode = Mode.light): string[] {
+export function getColorTheme(range: string[], count = 6, mode: 'dark'): string[] {
   const color = mode === 'dark' ? '#000000' : '#ffffff';
   return chroma
     .scale([color, ...range])

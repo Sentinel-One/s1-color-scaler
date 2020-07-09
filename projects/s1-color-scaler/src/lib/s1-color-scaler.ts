@@ -2,10 +2,7 @@ import { getColors, getColorTheme, getRgbFromImageData, loadImageBitmap } from '
 import { Observable, Subject } from 'rxjs';
 import { InlineWorkerHelper } from './inline-worker-helper';
 
-export enum Mode {
-  dark = 'dark',
-  light = 'light',
-}
+export type Mode = 'dark' | 'light';
 
 export class S1ColorScaler {
   readonly imgPath: string;
@@ -18,12 +15,12 @@ export class S1ColorScaler {
     return new S1ColorScaler(imgPath);
   }
 
-  public async getMainColorsTheme(count: number = 6, mode: Mode = Mode.light): Promise<string[]> {
+  public async getMainColorsTheme(count: number = 6, mode: Mode = 'dark'): Promise<string[]> {
     const mainColors = await this.extractMainColors(count);
     return getColorTheme(mainColors, count, mode);
   }
 
-  public getMainColorsTheme$(count: number = 6, mode: Mode = Mode.light): Observable<string[]> {
+  public getMainColorsTheme$(count: number = 6, mode: Mode = 'dark'): Observable<string[]> {
     const subject: Subject<string[]> = new Subject();
     this.getMainColorsTheme(count)
       .then((themeScale) => subject.next(themeScale))
