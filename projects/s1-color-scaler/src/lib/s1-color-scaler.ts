@@ -1,8 +1,11 @@
-import { getColors, getColorTheme, getRgbFromImageData, loadImageBitmap, rgbToHex } from './utils';
+import { getColors, getColorTheme, getRgbFromImageData, loadImageBitmap } from './utils';
 import { Observable, Subject } from 'rxjs';
 import { InlineWorkerHelper } from './inline-worker-helper';
 
-export type Mode = 'dark' | 'light';
+export enum Mode {
+  dark = 'dark',
+  light = 'light',
+}
 
 export class S1ColorScaler {
   readonly imgPath: string;
@@ -15,12 +18,12 @@ export class S1ColorScaler {
     return new S1ColorScaler(imgPath);
   }
 
-  public async getMainColorsTheme(count: number = 6, mode: Mode = 'light'): Promise<string[]> {
+  public async getMainColorsTheme(count: number = 6, mode: Mode = Mode.light): Promise<string[]> {
     const mainColors = await this.extractMainColors(count);
     return getColorTheme(mainColors, count, mode);
   }
 
-  public getMainColorsTheme$(count: number = 6, mode: Mode = 'light'): Observable<string[]> {
+  public getMainColorsTheme$(count: number = 6, mode: Mode = Mode.light): Observable<string[]> {
     const subject: Subject<string[]> = new Subject();
     this.getMainColorsTheme(count)
       .then((themeScale) => subject.next(themeScale))
@@ -28,7 +31,7 @@ export class S1ColorScaler {
     return subject.asObservable();
   }
 
-  public getMainColorsScale(count: number = 6): Promise<string[]> {
+  public getMainColorsScale(count: number = 4): Promise<string[]> {
     return this.extractMainColors(count);
   }
 
@@ -40,7 +43,7 @@ export class S1ColorScaler {
     return subject.asObservable();
   }
 
-  private async extractMainColors(count: number = 6): Promise<string[]> {
+  private async extractMainColors(count: number = 4): Promise<string[]> {
     return new Promise((resolve, reject) => {
       (async () => {
         try {
@@ -54,7 +57,7 @@ export class S1ColorScaler {
           worker.onmessage = ({ data }) => {
             const colorScale = getColors(data, count);
             const hex = colorScale.reduce((acc: string[], [r, g, b]) => {
-              acc.push(rgbToHex(r, b, g));
+              acc.push(`rgb(${r},${g},${b})`);
               return acc;
             }, []);
             resolve(hex);
