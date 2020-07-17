@@ -8,6 +8,7 @@
 
 S1ColorScaler - a dominant colors grabber lib that scales!
 
+[HIT THE DEMO](https://distracted-pike-a06858.netlify.app/)
 TBD 
 
 ## License

@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "all:build": "npm run example:build && npm run lib:build",
+    "build": "ng build example",
     "start": "ng serve --open",
     "lib:build": "ng build s1-color-scaler",
     "lib:lint": "ng lint s1-color-scaler --fix",

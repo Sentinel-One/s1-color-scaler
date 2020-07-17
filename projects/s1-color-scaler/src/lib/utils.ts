@@ -4,9 +4,7 @@ import { Mode } from './s1-color-scaler';
 
 export function getColors(pixels: number[][], count: number = 4): number[][] {
   const colorMap = quantize(pixels, count);
-  const p = colorMap.palette();
-  console.log(p);
-  return p;
+  return colorMap.palette();
 }
 
 export function getRgbFromImageData([imgData]): Promise<string[]> {
