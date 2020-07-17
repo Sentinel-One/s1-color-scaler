@@ -1,9 +1,64 @@
 :host {
-  display: flex;
-  width: 100%;
+  display: grid;
+  place-items: center;
+  font-family: monospace;
 }
-.cube {
+.logo {
+  width: 400px;
+}
+.main {
+  transform: translate(0, 5em);
+  display: grid;
+  place-items: center;
+}
+.container {
+  display: flex;
+  align-items: center;
+}
+.chunk {
+  display: flex;
+}
+.right {
+  transform: translate(30px, 0);
+}
+.color {
   width: 60px;
   height: 60px;
   margin: 2px;
+  border-radius: 50%;
+}
+.colors {
+  display: flex;
+  justify-content: space-between;
+  transform: translate(30px, 0);
+}
+.example-img {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+}
+.loader .c1{
+  animation: load 800ms infinite;
+}
+
+.loader .c2{
+  animation: load 800ms infinite;
+  animation-delay: 200ms;
+}
+
+.loader .c3{
+  animation: load 800ms infinite;
+  animation-delay: 400ms;
+}
+
+@keyframes load{
+  0%{
+    opacity: 0;
+  }
+  50%{
+    opacity: 1;
+  }
+  100%{
+    opacity: 0;
+  }
 }

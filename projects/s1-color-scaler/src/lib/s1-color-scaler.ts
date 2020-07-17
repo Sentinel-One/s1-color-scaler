@@ -1,5 +1,5 @@
 import { getColors, getColorTheme, getRgbFromImageData, loadImageBitmap } from './utils';
-import { Observable, Subject } from 'rxjs';
+import { defer, Observable } from 'rxjs';
 import { InlineWorkerHelper } from './inline-worker-helper';
 
 export type Mode = 'dark' | 'light';
@@ -21,11 +21,7 @@ export class S1ColorScaler {
   }
 
   public getMainColorsTheme$(count: number = 6, mode: Mode = 'dark'): Observable<string[]> {
-    const subject: Subject<string[]> = new Subject();
-    this.getMainColorsTheme(count)
-      .then((themeScale) => subject.next(themeScale))
-      .catch((err) => subject.error(err));
-    return subject.asObservable();
+    return defer(() => this.getMainColorsTheme(count));
   }
 
   public getMainColorsScale(count: number = 4): Promise<string[]> {
@@ -33,11 +29,7 @@ export class S1ColorScaler {
   }
 
   public getMainColorsScale$(count: number = 6): Observable<string[]> {
-    const subject: Subject<string[]> = new Subject();
-    this.getMainColorsScale(count)
-      .then((colors) => subject.next(colors))
-      .catch((err) => subject.error(err));
-    return subject.asObservable();
+    return defer(() => this.getMainColorsScale(count));
   }
 
   private async extractMainColors(count: number = 4): Promise<string[]> {

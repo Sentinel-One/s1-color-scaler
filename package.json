@@ -7,7 +7,7 @@
     "start": "ng serve --open",
     "lib:build": "ng build s1-color-scaler",
     "lib:lint": "ng lint s1-color-scaler --fix",
-    "lib:publish-2-npm": "./dist/s1-color-scaler npm publish"
+    "lib:publish": "./dist/s1-color-scaler npm publish"
   },
   "private": true,
   "dependencies": {
