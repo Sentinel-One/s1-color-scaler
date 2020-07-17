@@ -7,7 +7,7 @@
       "projectType": "library",
       "root": "projects/s1-color-scaler",
       "sourceRoot": "projects/s1-color-scaler/src",
-      "prefix": "s1-cs",
+      "prefix": "s1",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",

@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
+import { ColorGrabberDirective } from './color-grabber.directive';
 
 @NgModule({
-  declarations: [],
+  declarations: [ColorGrabberDirective],
   imports: [],
   exports: [],
 })
