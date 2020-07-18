@@ -23,6 +23,16 @@
   </div>
 </div>
 
+<div>
+  <label> MAIN COLORS grabbed by the directive will appear when done processing the hidden image! </label>
+  <img class="invisible" width="200" height="200" src="assets/s1_bg.jpg" s1ColorGrabber (mainColors)="getMainColors($event)">
+  <div class="chunk" *ngIf="fromDirective?.length > 0; else loadingColors">
+    <div *ngFor="let color of fromDirective">
+      <div class="color" [style.background]="color"></div>
+    </div>
+  </div>
+</div>
+
 <ng-template #loadingColors>
   <svg class="loader" height="20" width="80" transform="translate(0, 300)">
     <circle class="c1" cx="10" cy="10" r="10"  fill="red"></circle>

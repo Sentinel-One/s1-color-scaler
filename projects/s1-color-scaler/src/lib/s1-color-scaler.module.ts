@@ -4,6 +4,6 @@ import { ColorGrabberDirective } from './color-grabber.directive';
 @NgModule({
   declarations: [ColorGrabberDirective],
   imports: [],
-  exports: [],
+  exports: [ColorGrabberDirective],
 })
 export class S1ColorScalerModule {}

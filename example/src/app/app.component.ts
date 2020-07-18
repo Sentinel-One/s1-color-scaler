@@ -8,6 +8,7 @@ import { S1ColorScaler } from '../../../projects/s1-color-scaler/src/lib/s1-colo
 export class AppComponent implements AfterViewInit {
   colors;
   theme;
+  fromDirective;
   // todo make a proper demo
   ngAfterViewInit(): void {
     const scaler = S1ColorScaler.from('assets/logo.png');
@@ -22,5 +23,9 @@ export class AppComponent implements AfterViewInit {
 
   haveColors() {
     return this.colors?.length > 1 && this.theme?.length > 1;
+  }
+
+  getMainColors(colors: string[]) {
+    this.fromDirective = colors;
   }
 }
