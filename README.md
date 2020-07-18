@@ -41,6 +41,12 @@ Promise based API:
     });
 ```
 
+Angular grabber directive:
+
+```html
+  <img width="200" height="200" src="assets/s1_bg.jpg" s1ColorGrabber (mainColors)="getMainColors($event)">
+```
+
 ## License
 
 MIT &copy; Liron Hazan

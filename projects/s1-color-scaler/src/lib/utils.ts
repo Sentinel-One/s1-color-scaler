@@ -1,6 +1,7 @@
 import * as quantize from 'quantize';
 import * as chroma from 'chroma-js';
 import { Mode } from './s1-color-scaler';
+import { InlineWorkerHelper } from './inline-worker-helper';
 
 export function getColors(pixels: number[][], count: number = 4): number[][] {
   const colorMap = quantize(pixels, count);
@@ -34,5 +35,31 @@ export function loadImageBitmap(path: string): Promise<ImageBitmap> {
       resolve(await createImageBitmap(image));
     };
     image.onerror = (error) => reject(error);
+  });
+}
+
+export function extractMainColorTask(img: ImageBitmap | HTMLImageElement, count: number): Promise<string[]> {
+  return new Promise((resolve, reject) => {
+    (async () => {
+      try {
+        const offscreenCanvas = new OffscreenCanvas(img.width, img.height);
+        const ctx = offscreenCanvas.getContext('2d');
+        ctx.drawImage(img, 0, 0, img.width, img.height);
+        const imageData = ctx.getImageData(0, 0, offscreenCanvas.width, offscreenCanvas.height);
+
+        const worker = InlineWorkerHelper.run(getRgbFromImageData, [imageData]);
+        worker.onmessage = ({ data }) => {
+          const colorScale = getColors(data, count);
+          const hex = colorScale.reduce((acc: string[], [r, g, b]) => {
+            acc.push(`rgb(${r},${g},${b})`);
+            return acc;
+          }, []);
+          resolve(hex);
+          worker.terminate();
+        };
+      } catch (e) {
+        reject(e);
+      }
+    })();
   });
 }
