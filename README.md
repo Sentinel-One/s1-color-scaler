@@ -47,6 +47,14 @@ Angular grabber directive:
   <img width="200" height="200" src="assets/s1_bg.jpg" s1ColorGrabber (mainColors)="getMainColors($event)">
 ```
 
+```ts
+    this.mainColor$ = scaler.getMainColor$();
+```
+
+```html
+<div class="header" [style.background]="mainColor$ | async"></div>
+```
+
 ## License
 
 MIT &copy; Liron Hazan
