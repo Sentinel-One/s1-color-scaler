@@ -32,6 +32,15 @@ export class S1ColorScaler {
     return S1ColorScaler.extractMainColors(this.imgPath, count);
   }
 
+  public async getMainColor(): Promise<string> {
+    const colors = await S1ColorScaler.extractMainColors(this.imgPath, 2);
+    return colors[0];
+  }
+
+  public getMainColor$(): Observable<string> {
+    return defer(() => this.getMainColor());
+  }
+
   public getMainColorsScale$(count: number = 6): Observable<string[]> {
     return defer(() => this.getMainColorsScale(count));
   }

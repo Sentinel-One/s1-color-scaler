@@ -65,3 +65,7 @@
 .invisible {
   visibility: hidden;
 }
+.header {
+  height: 60px;
+  width: 100%;
+}

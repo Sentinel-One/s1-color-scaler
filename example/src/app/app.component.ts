@@ -1,5 +1,6 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { S1ColorScaler } from '../../../projects/s1-color-scaler/src/lib/s1-color-scaler';
+import { Observable } from 'rxjs';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -9,10 +10,11 @@ export class AppComponent implements AfterViewInit {
   colors;
   theme;
   fromDirective;
+  mainColor$: Observable<string>;
   // todo make a proper demo
   ngAfterViewInit(): void {
     const scaler = S1ColorScaler.from('assets/logo.png');
-
+    this.mainColor$ = scaler.getMainColor$();
     scaler.getMainColorsScale$(5).subscribe((colors) => {
       this.colors = colors;
     });
