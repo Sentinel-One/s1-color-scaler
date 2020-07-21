@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
-import { S1ColorScaler } from '../../../projects/s1-color-scaler/src/lib/s1-color-scaler/s1-color-scaler';
+import { S1ColorScaler } from '../../../projects/s1-graphic-capsules/src/lib/s1-color-scaler/s1-color-scaler';
 import { Observable } from 'rxjs';
 @Component({
   selector: 'app-root',

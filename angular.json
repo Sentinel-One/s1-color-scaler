@@ -3,38 +3,38 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "s1-color-scaler": {
+    "s1-graphic-capsules": {
       "projectType": "library",
-      "root": "projects/s1-color-scaler",
-      "sourceRoot": "projects/s1-color-scaler/src",
+      "root": "projects/s1-graphic-capsules",
+      "sourceRoot": "projects/s1-graphic-capsules/src",
       "prefix": "s1",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",
           "options": {
-            "tsConfig": "projects/s1-color-scaler/tsconfig.lib.json",
-            "project": "projects/s1-color-scaler/ng-package.json"
+            "tsConfig": "projects/s1-graphic-capsules/tsconfig.lib.json",
+            "project": "projects/s1-graphic-capsules/ng-package.json"
           },
           "configurations": {
             "production": {
-              "tsConfig": "projects/s1-color-scaler/tsconfig.lib.prod.json"
+              "tsConfig": "projects/s1-graphic-capsules/tsconfig.lib.prod.json"
             }
           }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "projects/s1-color-scaler/src/test.ts",
-            "tsConfig": "projects/s1-color-scaler/tsconfig.spec.json",
-            "karmaConfig": "projects/s1-color-scaler/karma.conf.js"
+            "main": "projects/s1-graphic-capsules/src/test.ts",
+            "tsConfig": "projects/s1-graphic-capsules/tsconfig.spec.json",
+            "karmaConfig": "projects/s1-graphic-capsules/karma.conf.js"
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "projects/s1-color-scaler/tsconfig.lib.json",
-              "projects/s1-color-scaler/tsconfig.spec.json"
+              "projects/s1-graphic-capsules/tsconfig.lib.json",
+              "projects/s1-graphic-capsules/tsconfig.spec.json"
             ],
             "exclude": [
               "**/node_modules/**"
@@ -53,7 +53,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/s1-color-scaler-example",
+            "outputPath": "dist/s1-graphic-capsules-example",
             "index": "example/src/index.html",
             "main": "example/src/main.ts",
             "polyfills": "example/src/polyfills.ts",
@@ -161,7 +161,7 @@
       }
     }
   },
-  "defaultProject": "s1-color-scaler",
+  "defaultProject": "s1-graphic-capsules",
   "schematics": {
     "@schematics/angular:component": {
       "styleext": "css"
