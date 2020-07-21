@@ -16,9 +16,9 @@
       "dom"
     ],
     "paths": {
-      "s1-color-scaler": [
-        "dist/s1-color-scaler/s1-color-scaler",
-        "dist/s1-color-scaler"
+      "s1-graphic-capsules": [
+        "dist/s1-graphic-capsules/s1-graphic-capsules",
+        "dist/s1-graphic-capsules"
       ]
     }
   },

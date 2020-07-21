@@ -1,13 +1,13 @@
 {
-  "name": "s1-color-scaler",
+  "name": "s1-graphic-capsules",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
     "build": "ng build example",
     "start": "ng serve --open",
-    "lib:build": "ng build s1-color-scaler",
-    "lib:lint": "ng lint s1-color-scaler --fix",
-    "lib:publish": "./dist/s1-color-scaler npm publish"
+    "lib:build": "ng build s1-graphic-capsules",
+    "lib:lint": "ng lint s1-graphic-capsules --fix",
+    "lib:publish": "./dist/s1-graphic-capsules npm publish"
   },
   "private": true,
   "dependencies": {
