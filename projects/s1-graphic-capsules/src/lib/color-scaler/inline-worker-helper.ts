@@ -1,16 +1,12 @@
 export class InlineWorkerHelper {
   /**
    * Inline worker workaround of running web workers from within an Angular lib
-   * @param usrCode
-   * @param usrParams
    */
-  // <P>(param: T[]) => Promise<P>
-  // tslint:disable-next-line:ban-types
-  static run<T>(usrCode: Function, usrParams?: T[]) {
+  static run(usrCode: (imgData: ImageData) => Promise<string[]>, imgData: ImageData) {
     const code = `const userProcedureFn = (${usrCode});
     self.onmessage = ({ data }) => {
       if (data.id !== 's1_color_scale') { return; }
-      userProcedureFn(data.usrParams).then((result) => {
+      userProcedureFn(data.imgData).then((result) => {
       self.postMessage(result, null);
       })
   };`;
@@ -20,7 +16,7 @@ export class InlineWorkerHelper {
     const worker = new Worker(url);
     worker.postMessage({
       id: 's1_color_scale',
-      usrParams: [...usrParams],
+      imgData,
     });
     return worker;
   }

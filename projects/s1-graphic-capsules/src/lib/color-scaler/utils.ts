@@ -6,7 +6,7 @@ export function getColors(pixels: number[][], count: number = 4): number[][] {
   return colorMap.palette();
 }
 
-export function getRgbFromImageData([imgData]): Promise<string[]> {
+export function getRgbFromImageData(imgData: ImageData): Promise<string[]> {
   const rgb = [];
   for (let i = 0; i < imgData.data.length; i += 4) {
     const r = imgData.data[i];
@@ -37,7 +37,7 @@ export function extractMainColorTask(img: ImageBitmap | HTMLImageElement, count:
         ctx.drawImage(img, 0, 0, img.width, img.height);
         const imageData = ctx.getImageData(0, 0, offscreenCanvas.width, offscreenCanvas.height);
 
-        const worker = InlineWorkerHelper.run(getRgbFromImageData, [imageData]);
+        const worker = InlineWorkerHelper.run(getRgbFromImageData, imageData);
         worker.onmessage = ({ data }) => {
           const colorScale = getColors(data, count);
           const hex = colorScale.reduce((acc: string[], [r, g, b]) => {

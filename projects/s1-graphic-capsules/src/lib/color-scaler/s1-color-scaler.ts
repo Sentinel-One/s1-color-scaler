@@ -8,10 +8,19 @@ export class S1ColorScaler {
     this.imgPath = imagePath;
   }
 
+  /**
+   * S1ColorScaler factory fn
+   * @param imgPath
+   */
   public static from(imgPath: string) {
     return new S1ColorScaler(imgPath);
   }
 
+  /**
+   * A util function for extracting the main colors of an image
+   * @param imgPath
+   * @param count - colors count
+   */
   static async extractMainColors(imgPath: string, count: number = 4): Promise<string[]> {
     const imageBitmap = await loadImageBitmap(imgPath);
     return extractMainColorTask(imageBitmap, count);
