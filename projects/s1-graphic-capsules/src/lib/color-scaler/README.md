@@ -19,18 +19,12 @@ RXJS API:
     scaler.getMainColorsScale$(5).subscribe((colors) => {
       this.colors = colors;
     });
-    scaler.getMainColorsTheme$(5).subscribe((colors) => {
-      this.theme = colors;
-    });
 ```
 
 Promise based API:
 ```ts
     scaler.getMainColorsScale(5).then((colors) => {
       this.colors = colors;
-    });
-    scaler.getMainColorsTheme(5).then((colors) => {
-      this.theme = colors;
     });
 ```
 
