@@ -1,6 +1,12 @@
 {
   "name": "s1-graphic-capsules",
   "version": "0.0.1",
+  "keywords": [
+    "colors",
+    "pixels",
+    "graphics",
+    "canvas"
+  ],
   "peerDependencies": {
     "@angular/common": "^9.1.11",
     "@angular/core": "^9.1.11",
