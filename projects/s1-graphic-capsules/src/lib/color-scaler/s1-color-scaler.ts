@@ -1,7 +1,5 @@
-import { extractMainColorTask, getColorTheme, loadImageBitmap } from './utils';
+import { extractMainColorTask, loadImageBitmap } from './utils';
 import { defer, Observable } from 'rxjs';
-
-export type Mode = 'dark' | 'light';
 
 export class S1ColorScaler {
   readonly imgPath: string;
@@ -17,15 +15,6 @@ export class S1ColorScaler {
   static async extractMainColors(imgPath: string, count: number = 4): Promise<string[]> {
     const imageBitmap = await loadImageBitmap(imgPath);
     return extractMainColorTask(imageBitmap, count);
-  }
-
-  public async getMainColorsTheme(count: number = 6, mode: Mode = 'dark'): Promise<string[]> {
-    const mainColors = await S1ColorScaler.extractMainColors(this.imgPath, count);
-    return getColorTheme(mainColors, count, mode);
-  }
-
-  public getMainColorsTheme$(count: number = 6, mode: Mode = 'dark'): Observable<string[]> {
-    return defer(() => this.getMainColorsTheme(count));
   }
 
   public getMainColorsScale(count: number = 4): Promise<string[]> {

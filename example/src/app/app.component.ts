@@ -15,11 +15,8 @@ export class AppComponent implements AfterViewInit {
   ngAfterViewInit(): void {
     const scaler = S1ColorScaler.from('assets/logo.png');
     this.mainColor$ = scaler.getMainColor$();
-    scaler.getMainColorsScale$(5).subscribe((colors) => {
+    scaler.getMainColorsScale$(10).subscribe((colors) => {
       this.colors = colors;
-    });
-    scaler.getMainColorsTheme$(5).subscribe((colors) => {
-      this.theme = colors;
     });
   }
 

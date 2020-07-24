@@ -1,6 +1,4 @@
 import * as quantize from 'quantize';
-import * as chroma from 'chroma-js';
-import { Mode } from './s1-color-scaler';
 import { InlineWorkerHelper } from './inline-worker-helper';
 
 export function getColors(pixels: number[][], count: number = 4): number[][] {
@@ -17,14 +15,6 @@ export function getRgbFromImageData([imgData]): Promise<string[]> {
     rgb.push([r, g, b]);
   }
   return Promise.resolve(rgb);
-}
-
-export function getColorTheme(range: string[], count = 6, mode: Mode = 'dark'): string[] {
-  const color = mode === 'dark' ? '#000000' : '#ffffff';
-  return chroma
-    .scale([color, ...range])
-    .mode('rgb')
-    .colors(count);
 }
 
 export function loadImageBitmap(path: string): Promise<ImageBitmap> {
