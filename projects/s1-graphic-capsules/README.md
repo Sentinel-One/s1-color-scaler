@@ -2,7 +2,7 @@
 
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](https://github.com/Sentinel-One/lottie/blob/master/LICENSE)
 
-A collection of lightweight utils used  in modern typescript
+A collection of lightweight utils used  in modern Typescript
 applications, based on modern performant WEB APIs. 
 
 # Features

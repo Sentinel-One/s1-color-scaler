@@ -1,4 +1,5 @@
-import * as quantize from 'quantize';
+import * as quantizeNS from 'quantize';
+const quantize = quantizeNS;
 import { InlineWorkerHelper } from './inline-worker-helper';
 
 /**
