@@ -15,7 +15,6 @@ export class S1ColorScaler {
   public static from(imgPath: string) {
     return new S1ColorScaler(imgPath);
   }
-
   /**
    * A util function for extracting the main colors of an image
    * @param imgPath
@@ -25,20 +24,29 @@ export class S1ColorScaler {
     const imageBitmap = await loadImageBitmap(imgPath);
     return extractMainColorTask(imageBitmap, count);
   }
-
+  /**
+   * Get a scale of the main colors of a given image
+   * @param count
+   */
   public getMainColorsScale(count: number = 4): Promise<string[]> {
     return S1ColorScaler.extractMainColors(this.imgPath, count);
   }
-
+  /**
+   * Gets the main/dominant color of an image
+   */
   public async getMainColor(): Promise<string> {
     const colors = await S1ColorScaler.extractMainColors(this.imgPath, 2);
     return colors[0];
   }
-
+  /**
+   * Gets the main/dominant color of an image
+   */
   public getMainColor$(): Observable<string> {
     return defer(() => this.getMainColor());
   }
-
+  /**
+   * Get a scale of the main colors of a given image
+   */
   public getMainColorsScale$(count: number = 6): Observable<string[]> {
     return defer(() => this.getMainColorsScale(count));
   }
