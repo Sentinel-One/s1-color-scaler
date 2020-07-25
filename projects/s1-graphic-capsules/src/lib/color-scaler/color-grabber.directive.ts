@@ -3,6 +3,10 @@ import { S1ColorScaler } from './s1-color-scaler';
 import { defer, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
+/**
+ * Gets the main/dominant color of an image
+ */
+
 @Directive({
   selector: '[s1ColorGrabber]',
 })
