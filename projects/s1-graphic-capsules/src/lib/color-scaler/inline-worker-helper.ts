@@ -1,5 +1,7 @@
 // Workaround to https://github.com/angular/angular-cli/issues/15059
 // Ensures the worker will be loaded from the same origin
+// No xss risk as the usrCode is a function passed by this specific worker user:
+// InlineWorkerHelper.run(getPixelsData, imageData)
 export class InlineWorkerHelper {
   /**
    * Inline worker workaround of running web workers from within an Angular lib
