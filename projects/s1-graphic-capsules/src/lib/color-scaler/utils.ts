@@ -1,14 +1,23 @@
-import * as quantize from 'quantize';
-import * as chroma from 'chroma-js';
-import { Mode } from './s1-color-scaler';
+import * as quantizeNS from 'quantize';
+const quantize = quantizeNS;
 import { InlineWorkerHelper } from './inline-worker-helper';
 
-export function getColors(pixels: number[][], count: number = 4): number[][] {
+/**
+ * Gets the colors using color quantization algorithm imported from "quantize" lib
+ * @param pixels
+ * @param count
+ */
+export function _quantize(pixels: number[][], count: number = 4): number[][] {
   const colorMap = quantize(pixels, count);
   return colorMap.palette();
 }
 
-export function getRgbFromImageData([imgData]): Promise<string[]> {
+/**
+ * Get The rgb from the image pixels
+ * @param imgData
+ * Returns an array of numeric arrays wrapped in a Promise
+ */
+export function getPixelsData(imgData: ImageData): Promise<number[][]> {
   const rgb = [];
   for (let i = 0; i < imgData.data.length; i += 4) {
     const r = imgData.data[i];
@@ -19,14 +28,11 @@ export function getRgbFromImageData([imgData]): Promise<string[]> {
   return Promise.resolve(rgb);
 }
 
-export function getColorTheme(range: string[], count = 6, mode: Mode = 'dark'): string[] {
-  const color = mode === 'dark' ? '#000000' : '#ffffff';
-  return chroma
-    .scale([color, ...range])
-    .mode('rgb')
-    .colors(count);
-}
-
+/**
+ * Loads an image from a given path and returns an ImageBitmap wrapped in a promise.
+ * The ImageBitmap interface represents a bitmap image which can be drawn to a <canvas> without undue latency (MDN)
+ * @param path
+ */
 export function loadImageBitmap(path: string): Promise<ImageBitmap> {
   return new Promise((resolve, reject) => {
     const image = new Image();
@@ -38,6 +44,13 @@ export function loadImageBitmap(path: string): Promise<ImageBitmap> {
   });
 }
 
+/**
+ * Invokes grabbing the colors of a given image and plucking the main colors as an output
+ * @param img
+ * @param count
+ * Using a web Worker for the image processing
+ * Returns an array of the main colors as rgb string wrapped in a Promise
+ */
 export function extractMainColorTask(img: ImageBitmap | HTMLImageElement, count: number): Promise<string[]> {
   return new Promise((resolve, reject) => {
     (async () => {
@@ -47,14 +60,13 @@ export function extractMainColorTask(img: ImageBitmap | HTMLImageElement, count:
         ctx.drawImage(img, 0, 0, img.width, img.height);
         const imageData = ctx.getImageData(0, 0, offscreenCanvas.width, offscreenCanvas.height);
 
-        const worker = InlineWorkerHelper.run(getRgbFromImageData, [imageData]);
+        const worker: Worker = InlineWorkerHelper.run(getPixelsData, imageData);
         worker.onmessage = ({ data }) => {
-          const colorScale = getColors(data, count);
-          const hex = colorScale.reduce((acc: string[], [r, g, b]) => {
-            acc.push(`rgb(${r},${g},${b})`);
-            return acc;
+          const colorScale = _quantize(data, count);
+          const rgb = colorScale.map(([r, g, b]) => {
+            return `rgb(${r},${g},${b})`;
           }, []);
-          resolve(hex);
+          resolve(rgb);
           worker.terminate();
         };
       } catch (e) {

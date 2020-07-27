@@ -3,8 +3,8 @@
   place-items: center;
   font-family: monospace;
 }
-.logo {
-  width: 400px;
+.pix {
+  border-radius: 50%;
 }
 .main {
   transform: translate(0, 5em);

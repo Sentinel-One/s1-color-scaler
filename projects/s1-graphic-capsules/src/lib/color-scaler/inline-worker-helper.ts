@@ -1,18 +1,20 @@
+// Workaround to https://github.com/angular/angular-cli/issues/15059
+// Ensures the worker will be loaded from the same origin
+// No xss risk as the usrCode is a function passed by this specific worker user:
+// InlineWorkerHelper.run(getPixelsData, imageData)
 export class InlineWorkerHelper {
   /**
    * Inline worker workaround of running web workers from within an Angular lib
-   * @param usrCode
-   * @param usrParams
+   * Returns an instance of the worker
    */
-  // <P>(param: T[]) => Promise<P>
-  // tslint:disable-next-line:ban-types
-  static run<T>(usrCode: Function, usrParams?: T[]) {
-    const code = `const userProcedureFn = (${usrCode});
+  static run(usrCode: (imgData: ImageData) => Promise<number[][]>, imgData: ImageData): Worker {
+    if (!(usrCode instanceof Function)) {
+      return;
+    }
+    const code = `const userProcedureFn = ${usrCode};
     self.onmessage = ({ data }) => {
       if (data.id !== 's1_color_scale') { return; }
-      userProcedureFn(data.usrParams).then((result) => {
-      self.postMessage(result, null);
-      })
+      userProcedureFn(data.imgData).then(result => self.postMessage(result, null))
   };`;
 
     const blob = new Blob([code], { type: 'application/javascript' });
@@ -20,7 +22,7 @@ export class InlineWorkerHelper {
     const worker = new Worker(url);
     worker.postMessage({
       id: 's1_color_scale',
-      usrParams: [...usrParams],
+      imgData,
     });
     return worker;
   }

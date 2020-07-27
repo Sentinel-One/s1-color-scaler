@@ -3,7 +3,7 @@
 
 S1ColorScaler - a dominant colors grabber lib that scales!
 
-[HIT THE DEMO](https://distracted-pike-a06858.netlify.app/)
+[HIT THE DEMO](https://clever-khorana-d8489f.netlify.app/)
 
 ## How to use
 
@@ -19,18 +19,12 @@ RXJS API:
     scaler.getMainColorsScale$(5).subscribe((colors) => {
       this.colors = colors;
     });
-    scaler.getMainColorsTheme$(5).subscribe((colors) => {
-      this.theme = colors;
-    });
 ```
 
 Promise based API:
 ```ts
     scaler.getMainColorsScale(5).then((colors) => {
       this.colors = colors;
-    });
-    scaler.getMainColorsTheme(5).then((colors) => {
-      this.theme = colors;
     });
 ```
 

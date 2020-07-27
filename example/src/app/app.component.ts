@@ -8,23 +8,19 @@ import { Observable } from 'rxjs';
 })
 export class AppComponent implements AfterViewInit {
   colors;
-  theme;
   fromDirective;
   mainColor$: Observable<string>;
   // todo make a proper demo
   ngAfterViewInit(): void {
     const scaler = S1ColorScaler.from('assets/logo.png');
     this.mainColor$ = scaler.getMainColor$();
-    scaler.getMainColorsScale$(5).subscribe((colors) => {
+    scaler.getMainColorsScale$(4).subscribe((colors) => {
       this.colors = colors;
-    });
-    scaler.getMainColorsTheme$(5).subscribe((colors) => {
-      this.theme = colors;
     });
   }
 
   haveColors() {
-    return this.colors?.length > 1 && this.theme?.length > 1;
+    return this.colors?.length > 1;
   }
 
   getMainColors(colors: string[]) {

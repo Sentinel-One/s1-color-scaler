@@ -1,12 +1,17 @@
 {
-  "name": "s1-graphic-capsules",
+  "name": "@sentinel-one/s1-graphic-capsules",
   "version": "0.0.1",
+  "keywords": [
+    "colors",
+    "pixels",
+    "graphics",
+    "canvas"
+  ],
   "peerDependencies": {
     "@angular/common": "^9.1.11",
     "@angular/core": "^9.1.11",
     "rxjs": "~6.5.4",
-    "quantize": "^1.0.2",
-    "chroma-js": "^2.1.0"
+    "quantize": "^1.0.2"
   },
   "dependencies": {
     "tslib": "^1.10.0"

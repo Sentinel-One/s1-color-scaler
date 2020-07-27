@@ -1,13 +1,15 @@
 {
-  "name": "s1-graphic-capsules",
+  "name": "@sentinel-one/s1-graphic-capsules",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "build": "ng build example",
+    "build": "ng build example --prod",
     "start": "ng serve --open",
     "lib:build": "ng build s1-graphic-capsules",
+    "lib:build-prod": "ng build s1-graphic-capsules --prod && cp README.md dist/@sentinel-one/s1-graphic-capsules/.",
     "lib:lint": "ng lint s1-graphic-capsules --fix",
-    "lib:publish": "./dist/s1-graphic-capsules npm publish"
+    "lib:publish": "./dist/@sentinel-one/s1-graphic-capsules npm publish",
+    "cp:readme": "cp README.md projects/s1-graphic-capsules/."
   },
   "private": true,
   "dependencies": {
@@ -19,11 +21,10 @@
     "@angular/platform-browser": "~9.1.0",
     "@angular/platform-browser-dynamic": "~9.1.0",
     "@angular/router": "~9.1.0",
+    "quantize": "^1.0.2",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
-    "zone.js": "~0.10.2",
-    "quantize": "^1.0.2",
-    "chroma-js": "^2.1.0"
+    "zone.js": "~0.10.2"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.901.9",
