@@ -1,4 +1,8 @@
-<div class="header" [style.background]="mainColor$ | async"></div>
+<div class="header" [style.background]="mainColor$ | async">
+  <h3 class="link" [routerLink]="['/export-svg-to-png']">  Export SVG to PNG </h3>
+
+</div>
+<img class="logo" src="assets/cs_logo.png">
 
 <div class="main">
   <div class="container" *ngIf="haveColors() ; else loadingColors">
@@ -20,6 +24,10 @@
 <!--      </div>-->
 <!--    </div>-->
 <!--  </div>-->
+</div>
+
+<div class="demos">
+  <router-outlet></router-outlet>
 </div>
 
 
