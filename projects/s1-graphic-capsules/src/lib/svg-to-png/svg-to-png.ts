@@ -2,12 +2,12 @@ import { defer, Observable } from 'rxjs';
 
 type Dimensions = { width: number; height: number };
 
-export function svgToPng$(node: SVGGraphicsElement, { width, height }: Dimensions): Observable<unknown> {
-  return defer(() => svgToPng(node, { width, height }));
+export function svgToPng$(node: SVGGraphicsElement, fileName: string, { width, height }: Dimensions): Observable<unknown> {
+  return defer(() => svgToPng(node, fileName, { width, height }));
 }
 
-export function svgToPng(node: SVGGraphicsElement, { width, height }: Dimensions): Promise<void> {
-  return svgStrToImage(getSVGString(node), { width, height });
+export function svgToPng(node: SVGGraphicsElement, fileName: string, { width, height }: Dimensions): Promise<void> {
+  return svgStrToImage(getSVGString(node), { width, height }).then((blob) => saveFile(blob, fileName));
 }
 
 function getSVGString(svgNode: SVGGraphicsElement) {
@@ -17,18 +17,11 @@ function getSVGString(svgNode: SVGGraphicsElement) {
   return serializer.serializeToString(svgNode);
 }
 
-function getCSSStyles<
-  T extends {
-    SVGGraphicsElement;
-    getElementsByTagName: (arg: string) => T;
-    [Symbol.iterator];
-    matches;
-  }
->(parentElement: SVGGraphicsElement) {
+function getCSSStyles(parentElement: any) {
   // Add all the different nodes to check including parent
   const nodesToCheck = [parentElement];
   const childNodes = parentElement.getElementsByTagName('*');
-  for (const node of childNodes[Symbol.iterator]) {
+  for (const node of childNodes) {
     nodesToCheck.push(node);
   }
 
@@ -97,4 +90,14 @@ function svgStrToImage(svgString: string, { width, height }: Dimensions): Promis
     };
     image.src = imgsrc;
   });
+}
+
+function saveFile(blob: Blob, fileName: string) {
+  const link = document.createElement('a');
+  link.href = URL.createObjectURL(blob);
+  link.download = fileName;
+  document.body.append(link);
+  link.click();
+  link.remove();
+  window.addEventListener('focus', (e) => URL.revokeObjectURL(link.href), { once: true });
 }

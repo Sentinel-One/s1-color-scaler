@@ -1,42 +1,10 @@
-<div class="header" [style.background]="mainColor$ | async">
-  <h3 class="link" [routerLink]="['/export-svg-to-png']">  Export SVG to PNG </h3>
-
-</div>
-<img class="logo" src="assets/cs_logo.png">
-
-<div class="main">
-  <div class="container" *ngIf="haveColors() ; else loadingColors">
-    <img class="example-img" src="assets/logo.png">
-    <div class="colors">
-      <div class="chunk">
-        <label> MAIN COLORS </label>
-        <div *ngFor="let color of colors">
-          <div class="color" [style.background]="color"></div>
-        </div>
-      </div>
-    </div>
-  </div>
-<!--  <div>-->
-<!--    <img class="pix" width="200" height="200" src="assets/s1_bg.jpg" s1ColorGrabber (mainColors)="getMainColors($event)">-->
-<!--    <div class="chunk" *ngIf="fromDirective?.length > 0; else loadingColors">-->
-<!--      <div *ngFor="let color of fromDirective">-->
-<!--        <div class="color" [style.background]="color"></div>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--  </div>-->
-</div>
+<header class="header" [style.background]="mainColor$ | async">
+  <div class="link" [routerLink]="['/colors']">  Colors scaler </div>
+  <div class="link" [routerLink]="['/export-svg-to-png']">  Export SVG to PNG </div>
+</header>
 
 <div class="demos">
   <router-outlet></router-outlet>
 </div>
-
-
-<ng-template #loadingColors>
-  <svg class="loader" height="20" width="80" transform="translate(0, 300)">
-    <circle class="c1" cx="10" cy="10" r="10"  fill="red"></circle>
-    <circle class="c2" cx="40" cy="10" r="10" fill="blue"></circle>
-    <circle class="c3" cx="70" cy="10" r="10" fill="green"></circle>
-  </svg>
-</ng-template>
 
 
