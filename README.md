@@ -7,7 +7,7 @@ A collection of lightweight utils used  in modern Typescript
 applications, based on modern performant WEB APIs. 
 
 ## Demo
-[HIT THE DEMO](https://sleepy-blackwell-9736e8.netlify.app/colors)
+[HIT THE DEMO](https://sleepy-blackwell-9736e8.netlify.app)
 
 ## Features
 * [Color scale](https://github.com/Sentinel-One/s1-graphic-capsules/tree/master/projects/s1-graphic-capsules/src/lib/color-scaler) - Plucks the main colors of a given image 🎨
