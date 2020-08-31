@@ -1,9 +1,8 @@
 # S1ColorScaler
 
-
 S1ColorScaler - a dominant colors grabber lib that scales!
 
-[HIT THE DEMO](https://clever-khorana-d8489f.netlify.app/)
+[HIT THE DEMO](https://sleepy-blackwell-9736e8.netlify.app/colors)
 
 ## How to use
 
