@@ -1,3 +1,4 @@
+export type Dummy = { id: number, action: string, children?: Dummy[] };
 export const categories = {
   id: 1,
   action: 'foo',
