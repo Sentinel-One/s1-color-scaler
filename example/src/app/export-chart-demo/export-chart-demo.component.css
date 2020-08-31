@@ -1,0 +1,19 @@
+svg {
+  width: 100%;
+  height: auto;
+}
+
+.export {
+  color: hotpink;
+  border: 2px solid hotpink;
+  border-radius: 4px;
+  cursor: pointer;
+  padding: 10px;
+  width: fit-content;
+  text-align: center;
+  font-family: "Comic Sans MS";
+  font-weight: bold;
+}
+.export:hover {
+  opacity: 0.7;
+}

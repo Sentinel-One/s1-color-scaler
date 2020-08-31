@@ -1,0 +1,63 @@
+.pix {
+  border-radius: 50%;
+}
+.main {
+  transform: translate(0, 2em);
+  display: grid;
+  place-items: center;
+}
+.container {
+  display: flex;
+  align-items: center;
+}
+.chunk {
+  display: flex;
+}
+.right {
+  transform: translate(30px, 0);
+}
+.color {
+  width: 40px;
+  height: 40px;
+  margin: 2px;
+  border-radius: 50%;
+  border: 1px solid #0f0030;
+}
+.colors {
+  display: flex;
+  justify-content: space-between;
+  transform: translate(30px, 0);
+}
+.example-img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+.loader .c1{
+  animation: load 800ms infinite;
+}
+
+.loader .c2{
+  animation: load 800ms infinite;
+  animation-delay: 200ms;
+}
+
+.loader .c3{
+  animation: load 800ms infinite;
+  animation-delay: 400ms;
+}
+
+@keyframes load{
+  0%{
+    opacity: 0;
+  }
+  50%{
+    opacity: 1;
+  }
+  100%{
+    opacity: 0;
+  }
+}
+.invisible {
+  visibility: hidden;
+}
